@@ -1,0 +1,44 @@
+p printBand(bool[100] band) {
+    for int j = 0; j < sizeof(band); j++ {
+        printf("%s", band[j] ? "*" : " ");
+    }
+    printf("\n");
+}
+
+f<int> main() {
+    // Prepare rule set
+    const dyn ruleSet = { false, true, true, true, false, true, true, false }; // 110
+
+    // Prepare old band
+    bool[100] oldBand = {};
+    for int i = 0; i < sizeof(oldBand) -1; i++ { oldBand[i] = false; }
+    oldBand[sizeof(oldBand) -1] = true;
+
+    // Prepare new band
+    bool[100] newBand = {};
+    for int i = 0; i < sizeof(oldBand) -1; i++ { oldBand[i] = false; }
+
+    // Print old band before doing anything
+    printBand(oldBand);
+
+    for int i = 0; i < sizeof(oldBand); i++ {
+        // Calculate new band
+        for int j = 0; j < sizeof(newBand); j++ {
+            int mask = 0;
+            if j-1 >= 0 && oldBand[j-1] {
+                mask |= 4;
+            }
+            if oldBand[j] {
+                mask |= 2;
+            }
+            if j+1 <= 100 && oldBand[j+1] {
+                mask |= 1;
+            }
+            newBand[j] = ruleSet[mask];
+        }
+        // Print the result
+        printBand(newBand);
+        // Set new band to old band
+        oldBand = newBand;
+    }
+}

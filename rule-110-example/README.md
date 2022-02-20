@@ -1,0 +1,2 @@
+# Rule 110 example
+Rule 110 [Wikipedia article](https://en.wikipedia.org/wiki/Rule_110) is a cellular automation, similar to the Conway's Game of Life. Rule 110 is proven to be turing-complete. This means that you can reduce any other problem to the Rule 110 problem.

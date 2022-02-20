@@ -1,0 +1,31 @@
+# Workflow for CI debug build
+name: CI
+
+on:
+  push:
+    paths-ignore:
+      - README.md
+      - SECURITY.md
+      - .git**
+  pull_request:
+    branches:
+      - main
+      - example/**
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Spice
+        uses: spicelang/spice-setup-action@v1
+
+      - name: Test
+        run: |
+          tree /opt/hostedtoolcache/spice
+
+      - name: Test examples
+        run: spice run ./.github/scripts/test-examples.spice
