@@ -15,6 +15,7 @@ This repository contains usage examples for the [Spice Programming Language](htt
 Here is a list of all included examples. You can find the source code for each particular example in dedicated sub-directories.
 
 ## Examples
+-	Conway's Game of Life (Demonstration of turing-completeness)
 -	Rule 110 (Demonstration of turing-completeness)
 
 ## Contributors
