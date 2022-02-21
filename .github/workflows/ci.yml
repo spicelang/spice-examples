@@ -4,9 +4,8 @@ name: CI
 on:
   push:
     paths-ignore:
-      - README.md
-      - SECURITY.md
-      - .git**
+      - '*.md'
+      - '.git**'
   pull_request:
     branches:
       - main

@@ -11,12 +11,13 @@
 
 ---
 
-This repository contains usage examples for the [Spice Programming Language](https://github.com/spicelang/spice). <br>
+This repository contains usage examples for the [Spice Programming Language](https://github.com/spicelang/spice).
+
 Here is a list of all included examples. You can find the source code for each particular example in dedicated sub-directories.
 
 ## Examples
--	Conway's Game of Life (Demonstration of turing-completeness)
--	Rule 110 (Demonstration of turing-completeness)
+-	[Conway's Game of Life](./game-of-life-example) (Demonstration of turing-completeness)
+-	[Rule 110](./rule-110-example) (Demonstration of turing-completeness)
 
 ## Contributors
 -	[@marcauberer](https://github.com/marcauberer)
