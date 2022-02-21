@@ -1,0 +1,2 @@
+# Conway's Game of Life
+The Game of Life [Wikipedia article](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) is a cellular automation. Game of Life is proven to be turing-complete. This means that you can reduce any other problem to the Game of Life problem.

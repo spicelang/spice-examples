@@ -23,9 +23,5 @@ jobs:
       - name: Setup Spice
         uses: spicelang/spice-setup-action@v1
 
-      - name: Test
-        run: |
-          tree /opt/hostedtoolcache/spice
-
       - name: Test examples
         run: spice run ./.github/scripts/test-examples.spice
