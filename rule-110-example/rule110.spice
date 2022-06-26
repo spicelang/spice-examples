@@ -1,44 +1,26 @@
-p printBand(bool[100] band) {
-    for int j = 0; j < sizeof(band); j++ {
-        printf("%s", band[j] ? "*" : " ");
-    }
-    printf("\n");
-}
+// Can be adjusted, but the array size below needs to be the same number
+const int CAP = 100;
 
 f<int> main() {
-    // Prepare rule set
-    const dyn ruleSet = { false, true, true, true, false, true, true, false }; // 110
+    int[100] board;
 
-    // Prepare old band
-    bool[100] oldBand = {};
-    for int i = 0; i < sizeof(oldBand) -1; i++ { oldBand[i] = false; }
-    oldBand[sizeof(oldBand) -1] = true;
+    // Initialize board
+    for int i = 0; i < CAP; i++ {
+        board[i] = 0;
+    }
+    board[CAP - 2] = 1; // Set second-last element to 1
 
-    // Prepare new band
-    bool[100] newBand = {};
-    for int i = 0; i < sizeof(oldBand) -1; i++ { oldBand[i] = false; }
-
-    // Print old band before doing anything
-    printBand(oldBand);
-
-    for int i = 0; i < sizeof(oldBand); i++ {
-        // Calculate new band
-        for int j = 0; j < sizeof(newBand); j++ {
-            int mask = 0;
-            if j-1 >= 0 && oldBand[j-1] {
-                mask |= 4;
-            }
-            if oldBand[j] {
-                mask |= 2;
-            }
-            if j+1 <= 100 && oldBand[j+1] {
-                mask |= 1;
-            }
-            newBand[j] = ruleSet[mask];
+    // Print pattern
+    for int i = 0; i < CAP - 2; i++ {
+        for int j = 0; j < CAP; j++ {
+            printf("%s", board[j] == 1 ? "*" : " ");
         }
-        // Print the result
-        printBand(newBand);
-        // Set new band to old band
-        oldBand = newBand;
+        printf("\n");
+
+        int pattern = (board[0] << 1) | board[1];
+        for int j = 1; j < CAP - 1; j++ {
+            pattern = ((pattern << 1) & 7) | board[j + 1];
+            board[j] = (110 >> pattern) & 1;
+        }
     }
 }
