@@ -1,0 +1,2 @@
+# Dijkstra's Algorithm
+[Dijkstra's Algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) is a greedy algorithm for solving the shortest paths problem for a given starting node. It computes the shortest path between the given starting node and one of the remaining nodes in an edge-weighted graph.
