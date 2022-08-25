@@ -19,6 +19,7 @@ Here is a list of all included examples. You can find the source code for each p
 -	[Conway's Game of Life](./game-of-life) - Demonstration of turing-completeness
 -	[Rule 110](./rule-110) - Demonstration of turing-completeness
 -	[Dijkstra's Algorithm](./dijkstra) - Shortest path finding in edge-weighted graphs
+- [Sudoku](./sudoku) - Solving a riddle
 
 ## Contributors
 -	[@marcauberer](https://github.com/marcauberer)
