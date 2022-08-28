@@ -20,6 +20,7 @@ Here is a list of all included examples. You can find the source code for each p
 -	[Rule 110](./rule-110) - Demonstration of turing-completeness
 -	[Dijkstra's Algorithm](./dijkstra) - Shortest path finding in edge-weighted graphs
 - [Sudoku](./sudoku) - Solving a riddle
+- [Graph coloring](./graph-coloring) - Solving the graph coloring problem
 
 ## Contributors
 -	[@marcauberer](https://github.com/marcauberer)
