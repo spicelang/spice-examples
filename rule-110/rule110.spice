@@ -2,7 +2,7 @@
 const int CAP = 100;
 
 f<int> main() {
-    int[100] board;
+    int[CAP] board;
 
     // Initialize board
     for int i = 0; i < CAP; i++ {
