@@ -1,8 +1,33 @@
-import "std/os/cmd" as cmd;
-import "std/text/print" as print;
+import "std/os/cmd";
+import "std/text/print";
+
+p testExample(string exampleName) {
+    // Retrieve the path to the Spice source file
+    String sourceFilePath = String("../../");
+    sourceFilePath += exampleName;
+    sourceFilePath += "/example.spice";
+
+    // Build the command to execute
+    const String cmd = "spice build " + sourceFilePath;
+
+    // Call Spice to compile the source file
+    const int returnCode = execCmd((string) cmd.getRaw());
+
+    // Check if compilation was successful
+    assert returnCode == 0;
+
+    // Compare the output with the expected output
+
+}
 
 f<int> main() {
-    print.println("Testing all examples ...");
-    // ToDo: Implement
-    print.println("Finished testing all examples.");
+    println("Testing all examples ...");
+
+    testExample("dijkstra");
+    testExample("game-of-life/");
+    testExample("graph-coloring");
+    testExample("rule-110");
+    testExample("sudoku");
+
+    println("Finished testing all examples.");
 }
