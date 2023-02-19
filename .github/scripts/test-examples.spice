@@ -1,23 +1,32 @@
 import "std/os/cmd";
+import "std/io/file";
 import "std/text/print";
 
 p testExample(string exampleName) {
-    // Retrieve the path to the Spice source file
-    String sourceFilePath = String("../../");
-    sourceFilePath += exampleName;
-    sourceFilePath += "/example.spice";
+    String basePath = String("../../");
+    basePath += exampleName;
 
-    // Build the command to execute
-    const String cmd = "spice build " + sourceFilePath;
+    // Retrieve paths to the files
+    const String sourceFilePath = basePath + "/example.spice";
+    const String outputFilePath = basePath + "/output.txt";
+    const String readmeFilePath = basePath + "/README.md";
+
+    // Check if all three files exist
+    assert fileExists((string) sourceFilePath.getRaw());
+    assert fileExists((string) outputFilePath.getRaw());
+    assert fileExists((string) readmeFilePath.getRaw());
 
     // Call Spice to compile the source file
+    const String cmd = "spice build " + sourceFilePath;
     const int returnCode = execCmd((string) cmd.getRaw());
 
     // Check if compilation was successful
     assert returnCode == 0;
 
     // Compare the output with the expected output
-
+    const String expectedOutput = readFile((string) outputFilePath.getRaw());
+    //const String actualOutput = readFile((string) );
+    //assert expectedOutput == actualOutput;
 }
 
 f<int> main() {
