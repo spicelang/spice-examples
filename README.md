@@ -28,4 +28,4 @@ Here is a list of all included examples. You can find the source code for each p
 ## License
 The project is licensed under the [MIT software license](https://github.com/spicelang/spice-examples/blob/main/LICENSE) and provided/distributed by ChilliBits.
 
-© ChilliBits 2021-2022
+© ChilliBits 2021-2023
