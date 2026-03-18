@@ -1,39 +1,72 @@
 import "std/os/cmd";
+import "std/os/filesystem";
 import "std/io/file";
+import "std/io/filepath";
 import "std/text/print";
+import "std/text/stringstream";
+import "std/test/assertions";
 
 p testExample(string exampleName) {
-    String basePath = String("../../");
-    basePath += exampleName;
+    println("Testing example '" + String(exampleName) + "'");
+
+    FilePath basePath = FilePath(".");
+    basePath /= exampleName;
+    const FilePath tmpDir = FilePath(getTempDir());
 
     // Retrieve paths to the files
-    const String sourceFilePath = basePath + "/example.spice";
-    const String outputFilePath = basePath + "/output.txt";
-    const String readmeFilePath = basePath + "/README.md";
+    const FilePath sourceFilePath = basePath / "example.spice";
+    const FilePath expectedOutputFilePath = basePath / "output.txt";
+    const FilePath readmeFilePath = basePath / "README.md";
+    const FilePath executableFilePath = tmpDir / "spice-test";
+    const FilePath actualOutputFilePath = tmpDir / "output.txt";
 
     // Check if all three files exist
-    assert fileExists((string) sourceFilePath.getRaw());
-    assert fileExists((string) outputFilePath.getRaw());
-    assert fileExists((string) readmeFilePath.getRaw());
+    println("  Checking for source file existance ...");
+    assertTrue(fileExists(sourceFilePath.toNativeString()));
+    println("  Checking for expected output file existance ...");
+    assertTrue(fileExists(expectedOutputFilePath.toNativeString()));
+    println("  Checking for README file existance ...");
+    assertTrue(fileExists(readmeFilePath.toNativeString()));
 
     // Call Spice to compile the source file
-    const String cmd = "spice build " + sourceFilePath;
-    const int returnCode = execCmd((string) cmd.getRaw());
+    StringStream compileCommand;
+    compileCommand << "spice build -o ";
+    compileCommand << executableFilePath.toNativeString() << " ";
+    compileCommand << sourceFilePath.toNativeString();
+    println("  Compiling with command: " + compileCommand.str());
+    const int compilationReturnCode = execCmd(compileCommand.str());
 
     // Check if compilation was successful
-    assert returnCode == 0;
+    assertEqual(0, compilationReturnCode);
+
+    // Run the executable
+    StringStream runCommand;
+    runCommand << executableFilePath.toNativeString();
+    runCommand << " > " << actualOutputFilePath.toNativeString();
+    println("  Running with command: " + runCommand.str());
+    const int returnCode = execCmd(runCommand.str());
+
+    // Check if run was successful
+    assertEqual(0, returnCode);
 
     // Compare the output with the expected output
-    const String expectedOutput = readFile((string) outputFilePath.getRaw());
-    //const String actualOutput = readFile((string) );
-    //assert expectedOutput == actualOutput;
+    println("  Comparing actual output with expected output ...");
+    const Result<String> expectedOutputResult = readFile(expectedOutputFilePath.toNativeString());
+    const Result<String> actualOutputResult = readFile(actualOutputFilePath.toNativeString());
+    String expectedOutput = expectedOutputResult.unwrap();
+    String actualOutput = actualOutputResult.unwrap();
+    println("Expected: " + expectedOutput);
+    println("Actual: " + actualOutput);
+    // assertEqual(expectedOutput.trim(), actualOutput.trim());
+
+    println("  Done.");
 }
 
 f<int> main() {
     println("Testing all examples ...");
 
     testExample("dijkstra");
-    testExample("game-of-life/");
+    testExample("game-of-life");
     testExample("graph-coloring");
     testExample("rule-110");
     testExample("sudoku");

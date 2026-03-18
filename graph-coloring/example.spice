@@ -10,7 +10,7 @@ p printSolution(int[] color) {
     printf("\n");
 }
 
-f<bool> isSafe(bool[][] graph, int[] color) {
+f<bool> isSafe(bool[VERTEX_COUNT][VERTEX_COUNT] graph, int[] color) {
     for int i = 0; i < VERTEX_COUNT; i++ {
         for int j = i + 1; j < VERTEX_COUNT; j++ {
             if graph[i][j] && color[j] == color[i] {
@@ -22,7 +22,7 @@ f<bool> isSafe(bool[][] graph, int[] color) {
 }
 
 f<bool> graphColoring(
-    bool[][] graph,
+    bool[VERTEX_COUNT][VERTEX_COUNT] graph,
     int m,
     int i,
     int[] color
@@ -60,12 +60,12 @@ f<int> main() {
        | /   |
       (0)---(1)
     */
-    bool[VERTEX_COUNT][VERTEX_COUNT] graph = {
-        { false, true, true, true },
-        { true, false, true, false },
-        { true, true, false, true },
-        { true, false, true, false }
-    };
+    bool[VERTEX_COUNT][VERTEX_COUNT] graph = [
+        [ false, true, true, true ],
+        [ true, false, true, false ],
+        [ true, true, false, true ],
+        [ true, false, true, false ]
+    ];
     int m = 3; // Number of colors
 
     // Initialize all color values as 0.
